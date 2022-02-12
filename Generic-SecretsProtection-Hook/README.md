@@ -4,9 +4,11 @@ This resource protects against accidental secrets exposure by observing every pr
 
 Currently, detailed error messages can only be found in the CloudWatch Log Group for the type. I don't know why stack events won't work.
 
-## Starter Configuration
+## Getting Started
 
-You may use the following configuration to start using the hook right away:
+After [activating](https://aws.amazon.com/blogs/mt/proactively-keep-resources-secure-and-compliant-with-aws-cloudformation-hooks/) the hook in the registry, you should apply configuration to enforce the failure mode. In the hook properties, click the **Configuration** tab, then the **Edit configuration** button, set a configuration alias (for example "default"), and add the configuration JSON.
+
+You may use the following configuration JSON to start using the hook right away with defaults:
 
 ```
 {
@@ -20,7 +22,7 @@ You may use the following configuration to start using the hook right away:
 }
 ```
 
-## Configuration Properties
+## Extra Configuration Properties
 
 The `Configuration` property takes in a list of rules with a `Description` of the rules and a `Regex` escaped as a JSON string. To escape your string, I recommend [this site](https://www.freeformatter.com/json-escape.html). For example, a full configuration might look like:
 
@@ -47,7 +49,7 @@ The `Configuration` property takes in a list of rules with a `Description` of th
 }
 ```
 
-If you do not provide a Configuration, a standard [default ruleset](https://github.com/iann0036/cfn-hooks/blob/main/Generic-SecretsProtection-Hook/src/generic_secretsprotection_hook/handlers.py#L54) will be used.
+If you do not provide a Configuration, a standard [default ruleset](https://github.com/iann0036/cfn-hooks/blob/main/Generic-SecretsProtection-Hook/src/generic_secretsprotection_hook/handlers.py#L56) will be used.
 
 The `Exceptions` property may be used to provide a comma-separated list of properties to not test for the presence of secrets. For example, the configuration may look like:
 

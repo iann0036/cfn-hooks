@@ -40,8 +40,10 @@ def _find_violations(propname, prop, violations, rules, exceptions):
         teststr = str(prop)
         
         for rule in rules:
-            if re.match(rule.get('Regex'), teststr):
-                violations.append("{} ({})".format(rule.get('Description'), propname))
+            regex = rule['Regex']
+            description = rule['Description']
+            if re.match(regex, teststr):
+                violations.append("{} ({})".format(description, propname))
 
     return violations
 
