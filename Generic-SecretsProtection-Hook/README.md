@@ -49,7 +49,7 @@ The `Configuration` property takes in a list of rules with a `Description` of th
 }
 ```
 
-If you do not provide a Configuration, a standard [default ruleset](https://github.com/iann0036/cfn-hooks/blob/main/Generic-SecretsProtection-Hook/src/generic_secretsprotection_hook/handlers.py#L56) will be used.
+If you do not provide a Configuration, a standard [default ruleset](https://github.com/iann0036/cfn-hooks/blob/main/Generic-SecretsProtection-Hook/src/generic_secretsprotection_hook/handlers.py#L62) will be used.
 
 The `Exceptions` property may be used to provide a comma-separated list of properties to not test for the presence of secrets. For example, the configuration may look like:
 
