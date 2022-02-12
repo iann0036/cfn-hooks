@@ -34,7 +34,8 @@ class HookHandlerRequest(BaseHookHandlerRequest):
 
 @dataclass
 class TypeConfigurationModel(BaseModel):
-    Configuration: Optional[str]
+    Rules: Optional[Sequence["_Rules"]]
+    Exceptions: Optional[Sequence[str]]
 
     @classmethod
     def _deserialize(
@@ -44,11 +45,34 @@ class TypeConfigurationModel(BaseModel):
         if not json_data:
             return None
         return cls(
-            Configuration=json_data.get("Configuration"),
+            Rules=deserialize_list(json_data.get("Rules"), Rules),
+            Exceptions=json_data.get("Exceptions"),
         )
 
 
 # work around possible type aliasing issues when variable has same name as a model
 _TypeConfigurationModel = TypeConfigurationModel
+
+
+@dataclass
+class Rules(BaseModel):
+    Description: Optional[str]
+    Regex: Optional[str]
+
+    @classmethod
+    def _deserialize(
+        cls: Type["_Rules"],
+        json_data: Optional[Mapping[str, Any]],
+    ) -> Optional["_Rules"]:
+        if not json_data:
+            return None
+        return cls(
+            Description=json_data.get("Description"),
+            Regex=json_data.get("Regex"),
+        )
+
+
+# work around possible type aliasing issues when variable has same name as a model
+_Rules = Rules
 
 
