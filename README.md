@@ -1,2 +1,3 @@
-# cfn-hooks
-CloudFormation Hooks Samples
+# CloudFormation Hooks Samples
+
+* [Secrets Protection](Generic-SecretsProtection-Hook/)
